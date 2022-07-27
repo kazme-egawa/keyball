@@ -163,7 +163,7 @@ void keyboard_post_init_user()
 #ifdef RGBLIGHT_ENABLE
   // Force RGB lights to show test animation without writing EEPROM.
   rgblight_enable_noeeprom();
-  rgblight_sethsv_noeeprom(132, 238, 120);
+  rgblight_sethsv_noeeprom(132, 238, 60);
   // rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING);
 #endif
 }
