@@ -237,10 +237,6 @@ static void render_luna(int LUNA_X, int LUNA_Y) {
         }
       }
     }
-
-
-    oled_set_cursor(0, 8);
-    oled_write(format_4d(current_wpm) +1, false);
 }
 
 static void print_status_narrow(void) {
