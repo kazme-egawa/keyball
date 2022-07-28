@@ -63,6 +63,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 #ifdef RGB_MATRIX_ENABLE
 #    define RGB_MATRIX_SPLIT    { 37, 37 }
+#    define DRIVER_LED_TOTAL 74
 #endif
 
 #ifndef OLED_FONT_H

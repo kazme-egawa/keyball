@@ -20,6 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #ifdef RGBLIGHT_ENABLE
+#define RGBLIGHT_SLEEP
+#define RGBLIGHT_LIMIT_VAL  120 // limitated for power consumption
 // #    define RGBLIGHT_EFFECT_BREATHING
 // #    define RGBLIGHT_EFFECT_RAINBOW_MOOD
 // #    define RGBLIGHT_EFFECT_RAINBOW_SWIRL
@@ -30,4 +32,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #    define RGBLIGHT_EFFECT_RGB_TEST
 // #    define RGBLIGHT_EFFECT_ALTERNATING
 // #    define RGBLIGHT_EFFECT_TWINKLE
+#endif
+
+#ifdef RGB_MATRIX_ENABLE
+//  #   define SPLIT_LAYER_STATE_ENABLE
+#define RGB_MATRIX_KEYPRESSES
+#define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
+// #define ENABLE_RGB_MATRIX_SOLID_REACTIVE
+// #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_WIDE
+// #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE
 #endif

@@ -55,6 +55,49 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     RESET    , _______  , KC_LEFT  , KC_DOWN  , KC_UP    , KC_RGHT  , _______  ,            _______  , KC_BSPC  , _______  , _______  , _______  , _______  , RESET
   ),
 };
+
+led_config_t g_led_config = {
+  {
+    // Key Matrix to LED Index
+    {   24,   19,   14, NO_LED,   9,   5,   1, NO_LED }, \
+    {   25,   20,   15, NO_LED,   10,   6,   2, NO_LED }, \
+    {   26,   21,   16, NO_LED,   11,   7,   3, NO_LED }, \
+    {   27,   22,   17, NO_LED,   12,   8,   4,   0  }, \
+    {   28,   23,   18, NO_LED,   13,   NO_LED,   NO_LED,   NO_LED }, \
+    {   44,   49,   54, NO_LED,   58,   62,   66, NO_LED }, \
+    {   45,   50,   55, NO_LED,   59,   63,   67, NO_LED }, \
+    {   46,   51,   56, NO_LED,   60,   64,   68, NO_LED }, \
+    {   47,   52,   57, NO_LED,   61,   65,   69,   70 }, \
+    {   48,   53,   NO_LED, NO_LED,   NO_LED,   NO_LED,   NO_LED,   NO_LED }  \
+  },
+  {
+    // LED Index to Physical Position
+    { 221,  64 }, { 204,  64 }, { 187,  64 }, {  170,  64 }, {  153,  64 }, { 136,  64 }, 
+    { 221,  48 }, { 204,  48 }, { 187,  48 }, {  170,  48 }, {  153,  48 }, { 136,  48 }, 
+    { 221,  32 }, { 204,  32 }, { 187,  32 }, {  170,  32 }, {  153,  32 }, { 136,  32 }, 
+    { 221,  16 }, { 204,  16 }, { 187,  16 }, {  170,  16 }, {  153,  16 }, { 136,  16 }, { 119,  16 }, 
+    { 221,  0 }, { 204,  0 }, { 187,  0 }, { 238,  0 }, 
+    { 0,  64 }, { 17,  64 }, { 34,  64 }, { 51,  64 }, { 68,  64 }, { 85,  64 },
+    { 0,  48 }, { 17,  48 }, { 34,  48 }, { 51,  48 }, { 68,  48 }, { 85,  48 },
+    { 0,  32 }, { 17,  32 }, { 34,  32 }, { 51,  32 }, { 68,  32 }, { 85,  32 },
+    { 0,  16 }, { 17,  16 }, { 34,  16 }, { 51,  16 }, { 68,  16 }, { 85,  16 }, { 102,  16 },
+    { 0,  0 }, { 17,  0 }
+  },
+  {
+    // LED Index to Flag
+    4, 4, 4, 4, 4, 4,
+    4, 4, 4, 4, 4, 4,
+    4, 4, 4, 4, 4, 4,
+    4, 4, 4, 4, 4, 4, 4,
+    4, 4, 4, 4,
+    4, 4, 4, 4, 4, 4,
+    4, 4, 4, 4, 4, 4,
+    4, 4, 4, 4, 4, 4,
+    4, 4, 4, 4, 4, 4, 4,
+    4, 4
+  }
+};
+
 // clang-format on
 
 
@@ -67,6 +110,12 @@ report_mouse_t pointing_device_task_user(report_mouse_t report)
 
   return report;
 }
+
+#ifdef RGBLIGHT_ENABLE
+#define FADE_TIME 12
+#define FADE_VAL 2
+uint32_t led_timer = 0;
+#endif
 
 #ifdef OLED_ENABLE
 
@@ -443,6 +492,22 @@ void keyboard_post_init_user()
   // Force RGB lights to show test animation without writing EEPROM.
   rgblight_enable_noeeprom();
   rgblight_sethsv_noeeprom(132, 238, 60);
+  // rgblight_decrease_val_noeeprom();
   // rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING);
+#endif
+
+#ifdef RGB_MATRIX_ENABLE
+  rgb_matrix_sethsv_noeeprom(132, 250, 60);
+  rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_REACTIVE_SIMPLE);
+#endif
+}
+
+void housekeeping_task_user(void){
+#ifdef RGBLIGHT_ENABLE
+  if(timer_elapsed32(led_timer) > FADE_TIME){
+    if(rgblight_get_val() < FADE_VAL)rgblight_sethsv_noeeprom(rgblight_get_hue(), rgblight_get_sat(), 0);
+    else rgblight_sethsv_noeeprom(rgblight_get_hue(), rgblight_get_sat(), rgblight_get_val() - FADE_VAL);
+    led_timer = timer_read32();
+  }
 #endif
 }
