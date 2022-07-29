@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+
+
 #ifdef RGBLIGHT_ENABLE
 #define RGBLIGHT_SLEEP
 #define RGBLIGHT_LIMIT_VAL  120 // limitated for power consumption
@@ -35,20 +37,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #ifdef RGB_MATRIX_ENABLE
+#    define RIGHT_BALL
+// #    define LEFT_BALL
+// #    define DUAL_BALL
+// #    define NO_BALL
+#ifdef RIGHT_BALL
 #    define RGB_MATRIX_SPLIT    { 37, 34 }
 #    define DRIVER_LED_TOTAL 71
-//  #   define SPLIT_LAYER_STATE_ENABLE
+#endif
+#ifdef LEFT_BALL
+#    define RGB_MATRIX_SPLIT    { 34, 37 }
+#    define DRIVER_LED_TOTAL 71
+#endif
+#ifdef DUAL_BALL
+#    define RGB_MATRIX_SPLIT    { 37, 37 }
+#    define DRIVER_LED_TOTAL 74
+#endif
+#ifdef NO_BALL
+#    define RGB_MATRIX_SPLIT    { 34, 34 }
+#    define DRIVER_LED_TOTAL 68
+#endif
 #define RGB_MATRIX_KEYPRESSES
-#define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
-// #define ENABLE_RGB_MATRIX_SOLID_REACTIVE
-// #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_WIDE
-// #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE
-// #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_CROSS
-// #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTICROSS
-// #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_NEXUS
-// #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS
-// #define ENABLE_RGB_MATRIX_SPLASH
-// #define ENABLE_RGB_MATRIX_MULTISPLASH
-// #define ENABLE_RGB_MATRIX_SOLID_SPLASH
-// #define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
+// #    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
+// #    define ENABLE_RGB_MATRIX_SOLID_REACTIVE
+// #    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_WIDE
+// #    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE
+// #    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_CROSS
+// #    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTICROSS
+// #    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_NEXUS
+// #    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS
+// #    define ENABLE_RGB_MATRIX_SPLASH
+// #    define ENABLE_RGB_MATRIX_MULTISPLASH
+// #    define ENABLE_RGB_MATRIX_SOLID_SPLASH
+#    define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 #endif
