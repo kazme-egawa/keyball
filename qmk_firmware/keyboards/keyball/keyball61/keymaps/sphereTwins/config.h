@@ -57,7 +57,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    define RGB_MATRIX_SPLIT    { 34, 34 }
 #    define DRIVER_LED_TOTAL 68
 #endif
-#define RGB_MATRIX_KEYPRESSES
+
+#    define RGB_MATRIX_FRAMEBUFFER_EFFECTS
+#    define ENABLE_RGB_MATRIX_TYPING_HEATMAP
+// #    define ENABLE_RGB_MATRIX_DIGITAL_RAIN
+
+// #    define RGB_MATRIX_KEYPRESSES
 // #    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
 // #    define ENABLE_RGB_MATRIX_SOLID_REACTIVE
 // #    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_WIDE
@@ -69,5 +74,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #    define ENABLE_RGB_MATRIX_SPLASH
 // #    define ENABLE_RGB_MATRIX_MULTISPLASH
 // #    define ENABLE_RGB_MATRIX_SOLID_SPLASH
-#    define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
+// #    define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 #endif
