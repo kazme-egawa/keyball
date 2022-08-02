@@ -50,12 +50,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    define DRIVER_LED_TOTAL 71
 #endif
 #ifdef DUAL_BALL
-#    define RGB_MATRIX_SPLIT    { 37, 37 }
-#    define DRIVER_LED_TOTAL 74
-#endif
-#ifdef NO_BALL
 #    define RGB_MATRIX_SPLIT    { 34, 34 }
 #    define DRIVER_LED_TOTAL 68
+#endif
+#ifdef NO_BALL
+#    define RGB_MATRIX_SPLIT    { 37, 37 }
+#    define DRIVER_LED_TOTAL 74
 #endif
 
 #    define RGB_MATRIX_FRAMEBUFFER_EFFECTS

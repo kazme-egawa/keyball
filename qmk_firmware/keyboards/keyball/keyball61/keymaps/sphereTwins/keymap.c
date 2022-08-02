@@ -440,6 +440,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     default:
       break;
   }
+
+  anim_sleep = timer_read32();
   
   return true;
 }
