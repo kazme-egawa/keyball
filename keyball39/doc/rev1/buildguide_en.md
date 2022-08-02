@@ -79,7 +79,6 @@ Included parts in the Keyball39 Standard Kit are the following
 | OLED module | 2 pcs ||
 | Pin header (4 pin) | 2 pcs ||
 | Pin socket (4 pin) | 2 pcs ||
-| Various acrylic spacers|||
 | Spacer M2 7mm | more 13 pcs ||
 | Spacer M2 9mm | 4 pcs ||
 | Spacer M2 5mm | 5 pcs | For Thumb low-profile modification |
@@ -168,7 +167,7 @@ The tip of the soldering iron should be shaped like a bamboo spear, so that you 
 Now let's solder the diodes one by one.  
 All the diodes should be soldered on 【BACK SIDE ONLY】.
   
-The silk marks on the diodes look like the arrows in the picture below. There are 48 diodes in total.  
+The silk marks on the diodes look like the arrows in the picture below. There are 45 diodes in total.  
 Diodes have polarity, so be sure to install them in the correct orientation. The orientation is the direction where the straight line on the component matches the straight line on the end of the arrow on the silk mark.  
   
 Look carefully at the picture below to confirm the orientation.  
