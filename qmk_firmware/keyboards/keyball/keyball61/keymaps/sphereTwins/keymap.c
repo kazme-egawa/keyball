@@ -469,6 +469,40 @@ void housekeeping_task_user(void){
     if(rgblight_get_val() < FADE_VAL)rgblight_sethsv_noeeprom(rgblight_get_hue(), rgblight_get_sat(), 0);
     else rgblight_sethsv_noeeprom(rgblight_get_hue(), rgblight_get_sat(), rgblight_get_val() - FADE_VAL);
     led_timer = timer_read32();
+    g_led_con
   }
 #endif
 }
+
+#ifdef RGB_MATRIX_ENABLE
+void rgb_matrix_indicators_user(void){
+  switch (get_highest_layer(layer_state | default_layer_state)) {
+    case _AUTO_MOUSE:
+    {
+      HSV h_purple = {132, 250, 60};
+      RGB purple = hsv_to_rgb(h_purple);
+      rgb_matrix_set_color(g_led_config.matrix_co[8][1], purple.r, purple.g, purple.b);
+      rgb_matrix_set_color(g_led_config.matrix_co[8][2], purple.r, purple.g, purple.b);
+      rgb_matrix_set_color(g_led_config.matrix_co[8][4], purple.r, purple.g, purple.b);
+      break;
+    }
+    case _UTIL:
+    {
+      HSV h_red = {220, 250, 60};
+      RGB red = hsv_to_rgb(h_red);
+      rgb_matrix_set_color(g_led_config.matrix_co[2][1], red.r, red.g, red.b);
+      rgb_matrix_set_color(g_led_config.matrix_co[2][2], red.r, red.g, red.b);
+      rgb_matrix_set_color(g_led_config.matrix_co[2][4], red.r, red.g, red.b);
+      rgb_matrix_set_color(g_led_config.matrix_co[2][5], red.r, red.g, red.b);
+      rgb_matrix_set_color(g_led_config.matrix_co[7][1], red.r, red.g, red.b);
+      rgb_matrix_set_color(g_led_config.matrix_co[7][2], red.r, red.g, red.b);
+      rgb_matrix_set_color(g_led_config.matrix_co[7][4], red.r, red.g, red.b);
+      rgb_matrix_set_color(g_led_config.matrix_co[7][5], red.r, red.g, red.b);
+      break;
+    }
+
+    default:
+      break;
+  }
+}
+#endif
