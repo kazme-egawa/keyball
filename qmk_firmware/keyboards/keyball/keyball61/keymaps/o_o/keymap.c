@@ -59,6 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // clang-format on
 
+#define MOUSE_TIMEOUT 1000
 deferred_token mouse_layer_token = INVALID_DEFERRED_TOKEN;
 
 uint32_t mouse_layer_cb(uint32_t trigger_time, void *cb_arg){
@@ -69,13 +70,13 @@ uint32_t mouse_layer_cb(uint32_t trigger_time, void *cb_arg){
 
 report_mouse_t pointing_device_task_user(report_mouse_t report)
 {
-  if (report.x > 1 || report.x < -1 || report.y > 1 || report.y < -1)
+  if (report.x > 1 || report.x < -1 || report.y > 1 || report.y < -1 || report.h > 1 || report.h < -1 || report.v > 1 || report.v < -1)
   {
     layer_on(_AUTO_MOUSE);
     if (mouse_layer_token == INVALID_DEFERRED_TOKEN) {
-      mouse_layer_token = defer_exec(1000, mouse_layer_cb, NULL);
+      mouse_layer_token = defer_exec(MOUSE_TIMEOUT, mouse_layer_cb, NULL);
     } else {
-      extend_deferred_exec(mouse_layer_token, 1000);
+      extend_deferred_exec(mouse_layer_token, MOUSE_TIMEOUT);
     }
   }
 
@@ -199,7 +200,7 @@ static void render_luna(int LUNA_X, int LUNA_Y) {
         0x20, 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0x1e, 0x01, 0x00, 0x00, 0x00, 0x00, 
         0x00, 0x00, 0x00, 0x07, 0x0c, 0x39, 0x23, 0x66, 0x44, 0x48, 0x4f, 0x70, 0x20, 0x20, 0x60, 0x40, 
         0x40, 0x47, 0x4c, 0x78, 0x20, 0x60, 0x4e, 0x48, 0x78, 0x67, 0x7c, 0x00, 0x00, 0x00, 0x00, 0x00
-      }     
+      }
     };
 
     /* Run */
@@ -428,6 +429,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
       case KC_BTN2:
       case KC_BTN3:
       case SCRL_MO:
+        extend_deferred_exec(mouse_layer_token, MOUSE_TIMEOUT);
         break;
 
       // escape modifier keys
